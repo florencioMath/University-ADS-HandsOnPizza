@@ -5,4 +5,8 @@
     <string name="fornecedores">Fornecedores</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="listar_pizza">Listar Pizza</string>
+    <string name="gerenciar_pizza">Gerenciar Pizza</string>
+    <string name="listar">Listar</string>
+    <string name="adiconar">Adiconar</string>
 </resources>

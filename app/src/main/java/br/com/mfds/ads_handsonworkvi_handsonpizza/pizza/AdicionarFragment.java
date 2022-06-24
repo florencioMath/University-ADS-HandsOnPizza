@@ -15,7 +15,6 @@ public class AdicionarFragment extends Fragment {
 
     public AdicionarFragment() {}
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +23,8 @@ public class AdicionarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.pizza_fragment_adicionar, container, false);
 
+        View v = inflater.inflate(R.layout.pizza_fragment_adicionar, container, false);
 
         Button btnAdicionar = v.findViewById(R.id.button_adicionar_pizza);
         btnAdicionar.setOnClickListener(new View.OnClickListener() {
@@ -35,7 +33,7 @@ public class AdicionarFragment extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_pizza, new ListarFragment()).commit();
             }
         });
-
+        // Inflate the layout for this fragment
         return v;
     }
 }

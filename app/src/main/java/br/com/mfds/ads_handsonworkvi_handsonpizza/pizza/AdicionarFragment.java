@@ -11,10 +11,10 @@ import android.widget.Button;
 
 import br.com.mfds.ads_handsonworkvi_handsonpizza.R;
 
-public class MainFragment extends Fragment {
+public class AdicionarFragment extends Fragment {
 
+    public AdicionarFragment() {}
 
-    public MainFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,28 +24,18 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.pizza_fragment_adicionar, container, false);
 
-        View v = inflater.inflate(R.layout.pizza_fragment_main, container, false);
-        if (savedInstanceState == null) {
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_pizza, new ListarFragment()).commit();
-        }
 
         Button btnAdicionar = v.findViewById(R.id.button_adicionar_pizza);
         btnAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_pizza, new AdicionarFragment()).commit();
-            }
-        });
-
-        Button btnListar = v.findViewById(R.id.button_listar_pizza);
-        btnListar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_pizza, new ListarFragment()).commit();
             }
         });
-        // Inflate the layout for this fragment
+
         return v;
     }
 }

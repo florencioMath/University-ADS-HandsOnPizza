@@ -9,4 +9,12 @@
     <string name="gerenciar_pizza">Gerenciar Pizza</string>
     <string name="listar">Listar</string>
     <string name="adiconar">Adiconar</string>
+    <string name="editar">Editar</string>
+    <string name="nome">Nome</string>
+    <string name="ingredientes">Ingredientes</string>
+    <string name="tempo_para_preparo">Tempo para preparo</string>
+    <string name="voltar">Voltar</string>
+    <string name="salvar">Salvar</string>
+    <string name="excluir">Excluir</string>
+    <string name="adicionar">Adicionar</string>
 </resources>

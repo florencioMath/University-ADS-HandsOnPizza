@@ -40,10 +40,10 @@ public class MenuFragment extends Fragment {
                 Toast.makeText(getActivity(), "Menu Pizza", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_clientes:
-                Toast.makeText(getActivity(), "Menu Clientes", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Menu Cliente", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_fornecedores:
-                Toast.makeText(getActivity(), "Menu Fornecedores", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Menu Fornecedore", Toast.LENGTH_SHORT).show();
                 break;
         }
         return super.onOptionsItemSelected(item);

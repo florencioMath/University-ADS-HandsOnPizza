@@ -8,7 +8,6 @@
     <string name="listar_pizza">Listar Pizza</string>
     <string name="gerenciar_pizza">Gerenciar Pizza</string>
     <string name="listar">Listar</string>
-    <string name="adiconar">Adiconar</string>
     <string name="editar">Editar</string>
     <string name="nome">Nome</string>
     <string name="ingredientes">Ingredientes</string>
@@ -17,4 +16,6 @@
     <string name="salvar">Salvar</string>
     <string name="excluir">Excluir</string>
     <string name="adicionar">Adicionar</string>
+    <string name="listar_clientes">Listar Clientes</string>
+    <string name="gerenciar_clientes">Gerenciar Clientes</string>
 </resources>

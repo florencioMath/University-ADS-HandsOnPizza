@@ -11,9 +11,9 @@ import android.widget.Button;
 
 import br.com.mfds.ads_handsonworkvi_handsonpizza.R;
 
-public class MainFragment extends Fragment {
+public class AdicionarFragment extends Fragment {
 
-    public MainFragment() {}
+    public AdicionarFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,28 +24,23 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.cliente_fragment_main, container, false);
-
-        if (savedInstanceState == null) {
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_cliente, new ListarFragment()).commit();
-        }
+        View v = inflater.inflate(R.layout.cliente_fragment_adicionar, container, false);
 
         Button btnAdicionar = v.findViewById(R.id.button_adicionar_cliente);
         btnAdicionar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_cliente, new AdicionarFragment()).commit();
-            }
-        });
-
-        Button btnListar = v.findViewById(R.id.button_listar_cliente);
-        btnListar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_cliente, new ListarFragment()).commit();
             }
         });
 
+        Button btnVoltar = v.findViewById(R.id.button_voltar_adicionar_cliente);
+        btnVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_cliente, new ListarFragment()).commit();
+            }
+        });
 
         // Inflate the layout for this fragment
         return v;

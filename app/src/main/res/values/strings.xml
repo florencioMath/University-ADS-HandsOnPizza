@@ -21,4 +21,7 @@
     <string name="endereco">Endereço</string>
     <string name="cpf">CPF</string>
     <string name="telefone">Telefone</string>
+    <string name="gerenciar_fornecedores">Gerenciar Fornecedores</string>
+    <string name="listar_fornecedores">Listar Fornecedores</string>
+    <string name="cnpj">CNPJ</string>
 </resources>

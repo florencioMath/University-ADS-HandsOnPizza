@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import br.com.mfds.ads_handsonworkvi_handsonpizza.cliente.MainFragment;
+import br.com.mfds.ads_handsonworkvi_handsonpizza.fornecedor.MainFragment;
 
 public class MainActivity extends AppCompatActivity {
 

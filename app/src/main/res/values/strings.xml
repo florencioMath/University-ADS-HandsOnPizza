@@ -3,7 +3,6 @@
     <string name="pizza">Pizza</string>
     <string name="clientes">Clientes</string>
     <string name="fornecedores">Fornecedores</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="listar_pizza">Listar Pizza</string>
     <string name="gerenciar_pizza">Gerenciar Pizza</string>
@@ -24,4 +23,7 @@
     <string name="gerenciar_fornecedores">Gerenciar Fornecedores</string>
     <string name="listar_fornecedores">Listar Fornecedores</string>
     <string name="cnpj">CNPJ</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="deseja_excluir_pizza">Deseja excluir a Pizza?</string>
 </resources>

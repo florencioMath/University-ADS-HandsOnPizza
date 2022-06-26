@@ -33,6 +33,16 @@ public class AdicionarFragment extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_pizza, new ListarFragment()).commit();
             }
         });
+
+        Button btnVoltar = v.findViewById(R.id.button_voltar_adicionar_pizza);
+        btnVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_pizza, new ListarFragment()).commit();
+            }
+        });
+
+
         // Inflate the layout for this fragment
         return v;
     }

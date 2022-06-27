@@ -4,6 +4,8 @@ public class Pizza {
 
     private int id;
     private String nome;
+    private String ingredientes;
+    private String tempo_preparo;
 
     public int getId() {
         return id;
@@ -36,10 +38,4 @@ public class Pizza {
     public void setTempo_preparo(String tempo_preparo) {
         this.tempo_preparo = tempo_preparo;
     }
-
-    private String ingredientes;
-    private String tempo_preparo;
-
-
-
 }

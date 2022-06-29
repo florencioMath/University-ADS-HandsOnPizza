@@ -44,7 +44,6 @@ public class AdicionarFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 adicionar();
-
             }
         });
 

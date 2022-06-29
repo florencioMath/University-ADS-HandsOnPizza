@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp"
-    tools:context=".cliente.MainFragment">
 
+    tools:context=".cliente.MainFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,16 +13,24 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_height="120dp"
+            android:gravity="center|left"
+            android:singleLine="false"
             android:text="@string/gerenciar_clientes"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
+
+        <FrameLayout
+            android:id="@+id/frame_cliente"
+            android:layout_width="match_parent"
+            android:layout_height="690dp"
+            android:layout_weight="1">
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
@@ -42,12 +49,5 @@
                 android:layout_weight="1"
                 android:text="@string/adicionar" />
         </LinearLayout>
-
-        <FrameLayout
-            android:id="@+id/frame_cliente"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </FrameLayout>
     </LinearLayout>
 </FrameLayout>

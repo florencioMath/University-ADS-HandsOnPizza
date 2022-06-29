@@ -157,7 +157,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = {"_id", "nome", "endereco", "cpf", "telefone"};
         String[] args = {String.valueOf(id)};
-        Cursor data = db.query(TABLE_CLIENTE, columns, "_id ?", args, null, null, null);
+        Cursor data = db.query(TABLE_CLIENTE, columns, "_id = ?", args, null, null, null);
         data.moveToFirst();
         Cliente c = new Cliente();
         c.setId(data.getInt(0));
@@ -169,9 +169,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return c;
     }
-
-
     /* Fim CRUD CLIENTE */
-
 
 }

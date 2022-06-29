@@ -80,6 +80,5 @@ public class AdicionarFragment extends Fragment {
         Toast.makeText(getActivity(), "Cliente salvo", Toast.LENGTH_LONG).show();
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_cliente, new ListarFragment()).commit();
         }
-
     }
 }

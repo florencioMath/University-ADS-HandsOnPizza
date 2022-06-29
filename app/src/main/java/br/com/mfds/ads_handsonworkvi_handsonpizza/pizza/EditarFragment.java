@@ -35,7 +35,6 @@ public class EditarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         View v = inflater.inflate(R.layout.pizza_fragment_editar, container, false);
 
         etNome = v.findViewById(R.id.editText_nome_pizza);
@@ -46,7 +45,6 @@ public class EditarFragment extends Fragment {
         int id_pizza = b.getInt("id");
         databaseHelper = new DatabaseHelper(getActivity());
         p = databaseHelper.getByIdPizza(id_pizza);
-
 
         etNome.setText(p.getNome());
         etIngredientes.setText(p.getIngredientes());
@@ -59,7 +57,6 @@ public class EditarFragment extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_pizza, new ListarFragment()).commit();
             }
         });
-
 
         Button btnEditar = v.findViewById(R.id.button_editar_pizza);
         btnEditar.setOnClickListener(new View.OnClickListener() {

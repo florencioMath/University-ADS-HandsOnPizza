@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import br.com.mfds.ads_handsonworkvi_handsonpizza.pizza.MainFragment;
+
 
 public class MenuFragment extends Fragment {
 
@@ -38,12 +40,14 @@ public class MenuFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.menu_pizza:
                 Toast.makeText(getActivity(), "Menu Pizza", Toast.LENGTH_SHORT).show();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, new MainFragment()).commit();
                 break;
             case R.id.menu_clientes:
                 Toast.makeText(getActivity(), "Menu Cliente", Toast.LENGTH_SHORT).show();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, new br.com.mfds.ads_handsonworkvi_handsonpizza.cliente.MainFragment()).commit();
                 break;
             case R.id.menu_fornecedores:
-                Toast.makeText(getActivity(), "Menu Fornecedore", Toast.LENGTH_SHORT).show();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, new br.com.mfds.ads_handsonworkvi_handsonpizza.fornecedor.MainFragment()).commit();
                 break;
         }
         return super.onOptionsItemSelected(item);

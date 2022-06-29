@@ -91,6 +91,8 @@ public class EditarFragment extends Fragment {
 
         return v;
     }
+
+    /* Função que edita as pizza ao banco de dados */
     private void editar(int id) {
         if(etNome.getText().toString().equals("")){
             Toast.makeText(getActivity(), "Por favor, Informe o nome da Pizza",Toast.LENGTH_LONG).show();
@@ -110,6 +112,7 @@ public class EditarFragment extends Fragment {
         }
     }
 
+    /* Função que exclui as pizza ao banco de dados */
     private void excluir(int id) {
         p = new Pizza();
         p.setId(id);

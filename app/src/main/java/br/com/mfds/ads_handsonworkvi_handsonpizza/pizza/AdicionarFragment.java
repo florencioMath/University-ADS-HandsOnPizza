@@ -58,6 +58,7 @@ public class AdicionarFragment extends Fragment {
         return v;
     }
 
+    /* Função que adiciona as pizza ao banco de dados */
     private void adicionar() {
         if(etNome.getText().toString().equals("")){
             Toast.makeText(getActivity(), "Por favor, Informe o nome da Pizza",Toast.LENGTH_LONG).show();

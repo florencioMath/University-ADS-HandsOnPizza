@@ -29,10 +29,13 @@ public class ListarFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.cliente_fragment_listar, container, false);
+
+        /* Lista todos os cliente */
         DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
         ListView lv = v.findViewById(R.id.list_view_listar_cliente);
         databaseHelper.getAllCliente(getActivity(), lv);
 
+        /* Ao clicar em algum cliente é redirecionado para a pagina de editar */
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

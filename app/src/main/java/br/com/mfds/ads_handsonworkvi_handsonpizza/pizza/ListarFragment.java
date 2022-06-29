@@ -29,11 +29,14 @@ public class ListarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        /* Lista todas as pizza */
         View v = inflater.inflate(R.layout.pizza_fragment_listar, container, false);
         DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
         ListView lv = v.findViewById(R.id.list_view_listar_pizza);
         databaseHelper.getAllPizza(getActivity(), lv);
 
+        /* Ao clicar em alguma pizza é redirecionado para a pagina de editar */
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

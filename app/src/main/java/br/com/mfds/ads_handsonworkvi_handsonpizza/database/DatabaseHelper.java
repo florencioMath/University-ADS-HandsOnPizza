@@ -84,6 +84,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
+    /* Traz todas as Pizza */
     public void getAllPizza (Context context, ListView lv) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = {"_id", "nome", "ingredientes", "tempo_preparo"};
@@ -94,6 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    /* Pega a Pizza pelo ID */
     public Pizza getByIdPizza (int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = {"_id", "nome", "ingredientes", "tempo_preparo"};
@@ -124,6 +126,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
+    /* UPDATE */
     public long updateCliente(Cliente c) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -136,6 +139,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
+    /* DELETE */
     public long deleteCliente(Cliente c) {
         SQLiteDatabase db = this.getWritableDatabase();
         long id = db.delete(TABLE_CLIENTE, "_id = ?", new String[]{String.valueOf(c.getId())});
@@ -143,6 +147,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
+    /* Traz todos os Cliente*/
     public void getAllCliente(Context context, ListView lv) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = {"_id", "nome", "endereco", "cpf", "telefone"};
@@ -153,6 +158,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    /* Pega o Cliente pelo ID*/
     public Cliente getByIdCliente(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = {"_id", "nome", "endereco", "cpf", "telefone"};

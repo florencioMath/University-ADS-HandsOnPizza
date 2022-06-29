@@ -94,6 +94,8 @@ public class EditarFragment extends Fragment {
 
         return v;
     }
+
+    /* Função que edita os cliente ao banco de dados */
     private void editar(int id) {
         if(etNome.getText().toString().equals("")){
             Toast.makeText(getActivity(), "Por favor, Informe o nome do Cliente",Toast.LENGTH_LONG).show();
@@ -116,6 +118,7 @@ public class EditarFragment extends Fragment {
         }
     }
 
+    /* Função que edita os cliente ao banco de dados */
     private void excluir(int id) {
         c = new Cliente();
         c.setId(id);

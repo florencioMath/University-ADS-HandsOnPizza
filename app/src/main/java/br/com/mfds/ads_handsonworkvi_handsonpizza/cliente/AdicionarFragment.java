@@ -59,6 +59,7 @@ public class AdicionarFragment extends Fragment {
         return v;
     }
 
+    /* Função que adiciona os cliente ao banco de dados */
     private void adicionar() {
     if(etNomeCliente.getText().toString().equals("")) {
         Toast.makeText(getActivity(), "Por favor, Informe o nome do Cliente", Toast.LENGTH_LONG).show();

@@ -37,7 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "nome VARCHAR(100), " +
             "endereco VARCHAR(100), " +
-            "cpf VARCHAR(15), " +
+            "cnpj VARCHAR(15), " +
             "telefone VARCHAR(15));";
 
     private static final String DROP_TABLE_PIZZA = "DROP TABLE IF EXISTS " + TABLE_PIZZA;
@@ -52,7 +52,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_PIZZA);
         db.execSQL(CREATE_TABLE_CLIENTE);
-        db.execSQL(CREATE_TABLE_CLIENTE);
+        db.execSQL(CREATE_TABLE_FORNECEDOR);
     }
 
     @Override

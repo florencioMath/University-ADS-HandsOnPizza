@@ -22,6 +22,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:padding="10dp"
+                android:textAlignment="center"
                 android:text="@string/adicionar" />
 
             <TextView
@@ -32,7 +33,7 @@
                 android:text="@string/nome" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/editText_nome_fornecedor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -46,7 +47,7 @@
                 android:text="@string/endereco" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/editText_endereco_fornecedor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -60,7 +61,7 @@
                 android:text="@string/cnpj" />
 
             <EditText
-                android:id="@+id/editTextNumber"
+                android:id="@+id/editText_cnpj_fornecedor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -74,7 +75,7 @@
                 android:text="@string/telefone" />
 
             <EditText
-                android:id="@+id/editTextPhone"
+                android:id="@+id/editText_telefone_fornecedor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"

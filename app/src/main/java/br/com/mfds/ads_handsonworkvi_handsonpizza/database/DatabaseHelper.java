@@ -10,6 +10,7 @@ import android.widget.SimpleCursorAdapter;
 
 import br.com.mfds.ads_handsonworkvi_handsonpizza.R;
 import br.com.mfds.ads_handsonworkvi_handsonpizza.cliente.Cliente;
+import br.com.mfds.ads_handsonworkvi_handsonpizza.fornecedor.Fornecedor;
 import br.com.mfds.ads_handsonworkvi_handsonpizza.pizza.Pizza;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -17,6 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "handsonpiza";
     private static final String TABLE_PIZZA = "pizza";
     private static final String TABLE_CLIENTE = "cliente";
+    private static final String TABLE_FORNECEDOR = "fornecedor";
 
     private static final String CREATE_TABLE_PIZZA = "CREATE TABLE " + TABLE_PIZZA + "(" +
             "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -31,8 +33,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "cpf VARCHAR(15), " +
             "telefone VARCHAR(15));";
 
+    private static final String CREATE_TABLE_FORNECEDOR = "CREATE TABLE " + TABLE_FORNECEDOR + "(" +
+            "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "nome VARCHAR(100), " +
+            "endereco VARCHAR(100), " +
+            "cpf VARCHAR(15), " +
+            "telefone VARCHAR(15));";
+
     private static final String DROP_TABLE_PIZZA = "DROP TABLE IF EXISTS " + TABLE_PIZZA;
     private static final String DROP_TABLE_CLIENTE = "DROP TABLE IF EXISTS " + TABLE_CLIENTE;
+    private static final String DROP_TABLE_FORNECEDOR = "DROP TABLE IF EXISTS " + TABLE_FORNECEDOR;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1 );
@@ -42,12 +52,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_PIZZA);
         db.execSQL(CREATE_TABLE_CLIENTE);
+        db.execSQL(CREATE_TABLE_CLIENTE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(DROP_TABLE_PIZZA);
         db.execSQL(DROP_TABLE_CLIENTE);
+        db.execSQL(DROP_TABLE_FORNECEDOR);
         onCreate(db);
     }
 
@@ -176,5 +188,69 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return c;
     }
     /* Fim CRUD CLIENTE */
+
+    /* Início CRUD FORNECEDOR */
+    public long createFornecedor(Fornecedor f) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("nome", f.getNome());
+        cv.put("endereco", f.getEndereco());
+        cv.put("cnpj", f.getCnpj());
+        cv.put("telefone", f.getTelefone());
+        long id = db.insert(TABLE_FORNECEDOR, null, cv);
+        db.close();
+        return id;
+    }
+
+    /* UPDATE */
+    public long updateFornecedor(Fornecedor f) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("nome", f.getNome());
+        cv.put("endereco", f.getEndereco());
+        cv.put("cnpj", f.getCnpj());
+        cv.put("telefone", f.getTelefone());
+        long id = db.update(TABLE_FORNECEDOR, cv, "_id = ?", new String[]{String.valueOf(f.getId())});
+        db.close();
+        return id;
+    }
+
+    /* DELETE */
+    public long deleteFornecedor(Fornecedor f) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long id = db.delete(TABLE_FORNECEDOR, "_id = ?", new String[]{String.valueOf(f.getId())});
+        db.close();
+        return id;
+    }
+
+    /* Traz todos os Fornecedores*/
+    public void getAllFornecedores(Context context, ListView lv) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {"_id", "nome", "endereco", "cnpj", "telefone"};
+        Cursor data = db.query(TABLE_FORNECEDOR, columns, null, null, null, null, "nome");
+        int[] to = {R.id.textViewIdListarFornecedor, R.id.textViewNomeListarFornecedor, R.id.textViewEnderecoListarFornecedor, R.id.textViewCnpjListarFornecedor, R.id.textViewTelefoneListarFornecedor};
+        SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(context, R.layout.fornecedor_item_list_view, data, columns, to, 0);
+        lv.setAdapter(simpleCursorAdapter);
+        db.close();
+    }
+
+    /* Pega o Fornecedor pelo ID*/
+    public Fornecedor getByIdFornecedor(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {"_id", "nome", "endereco", "cnpj", "telefone"};
+        String[] args = {String.valueOf(id)};
+        Cursor data = db.query(TABLE_FORNECEDOR, columns, "_id = ?", args, null, null, null);
+        data.moveToFirst();
+        Fornecedor f = new Fornecedor();
+        f.setId(data.getInt(0));
+        f.setNome(data.getString(1));
+        f.setEndereco(data.getString(2));
+        f.setCnpj(data.getString(3));
+        f.setTelefone(data.getString(4));
+        data.close();
+        db.close();
+        return f;
+    }
+    /* Fim CRUD FORNECEDOR */
 
 }

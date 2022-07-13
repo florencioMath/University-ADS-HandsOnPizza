@@ -11,14 +11,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.concurrent.ExecutionException;
+
 import br.com.mfds.ads_handsonworkvi_handsonpizza.R;
 import br.com.mfds.ads_handsonworkvi_handsonpizza.database.DatabaseHelper;
+import br.com.mfds.ads_handsonworkvi_handsonpizza.webservice.DadosEndereco;
+import br.com.mfds.ads_handsonworkvi_handsonpizza.webservice.RetornarEnderecoPeloCep;
 
 public class AdicionarFragment extends Fragment {
 
     private EditText etNomeCliente;
-    private EditText etEnderecoCliente;
     private EditText etCpf;
+    private EditText etCep;
+    private EditText etLogradouro;
+    private EditText etNumero;
+    private EditText etBairro;
+    private EditText etCidade;
     private EditText etTelefoneCliente;
 
     public AdicionarFragment() {}
@@ -35,9 +43,31 @@ public class AdicionarFragment extends Fragment {
         View v = inflater.inflate(R.layout.cliente_fragment_adicionar, container, false);
 
         etNomeCliente = v.findViewById(R.id.editText_nome_cliente);
-        etEnderecoCliente = v.findViewById(R.id.editText_endereco_cliente);
         etCpf = v.findViewById(R.id.editText_cpf_cliente);
+        etCep = v.findViewById(R.id.editText_cep_cliente);
+        etLogradouro = v.findViewById(R.id.editText_logradouro_cliente);
+        etNumero = v.findViewById(R.id.editText_numero_cliente);
+        etBairro = v.findViewById(R.id.editText_bairro_cliente);
+        etCidade = v.findViewById(R.id.editText_cidade_cliente);
         etTelefoneCliente = v.findViewById(R.id.editText_telefone_cliente);
+
+        etCep.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (!hasFocus) {
+                    try {
+                        DadosEndereco dadosEndereco = new RetornarEnderecoPeloCep(etCep.getText().toString()).execute().get();
+                        etLogradouro.setText(dadosEndereco.getLogradouro());
+                        etBairro.setText(dadosEndereco.getBairro());
+                        etCidade.setText(dadosEndereco.getLocalidade());
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
 
         Button btnAdicionar = v.findViewById(R.id.button_adicionar_cliente);
         btnAdicionar.setOnClickListener(new View.OnClickListener() {
@@ -63,18 +93,30 @@ public class AdicionarFragment extends Fragment {
     private void adicionar() {
     if(etNomeCliente.getText().toString().equals("")) {
         Toast.makeText(getActivity(), "Por favor, Informe o nome do Cliente", Toast.LENGTH_LONG).show();
-    }   else if (etEnderecoCliente.getText().toString().equals("")) {
-            Toast.makeText(getActivity(), "Por favor, Informe o endereço do Cliente", Toast.LENGTH_LONG).show();
-    }   else if (etCpf.getText().toString().equals("")) {
+    } else if (etCpf.getText().toString().equals("")) {
             Toast.makeText(getActivity(), "Por favor, Informe o CPF do Cliente", Toast.LENGTH_LONG).show();
-    }   else if (etTelefoneCliente.getText().toString().equals("")) {
+    }  else if (etCep.getText().toString().equals("")) {
+        Toast.makeText(getActivity(), "Por favor, Informe o CEP do Cliente", Toast.LENGTH_LONG).show();
+    } else if (etLogradouro.getText().toString().equals("")) {
+        Toast.makeText(getActivity(), "Por favor, Informe o Logradouro do Cliente", Toast.LENGTH_LONG).show();
+    } else if (etNumero.getText().toString().equals("")) {
+        Toast.makeText(getActivity(), "Por favor, Informe o Numero do Cliente", Toast.LENGTH_LONG).show();
+    } else if (etBairro.getText().toString().equals("")) {
+        Toast.makeText(getActivity(), "Por favor, Informe o Bairro do Cliente", Toast.LENGTH_LONG).show();
+    } else if (etCidade.getText().toString().equals("")) {
+        Toast.makeText(getActivity(), "Por favor, Informe a Cidade do Cliente", Toast.LENGTH_LONG).show();
+    }else if (etTelefoneCliente.getText().toString().equals("")) {
             Toast.makeText(getActivity(), "Por favor, Informe o telefone do Cliente", Toast.LENGTH_LONG).show();
     }   else {
         DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
         Cliente c = new Cliente();
         c.setNome(etNomeCliente.getText().toString());
-        c.setEndereco(etEnderecoCliente.getText().toString());
         c.setCpf(etCpf.getText().toString());
+        c.setCep(etCep.getText().toString());
+        c.setLogradouro(etLogradouro.getText().toString());
+        c.setNumero(Integer.parseInt(etNumero.getText().toString()));
+        c.setBairro(etBairro.getText().toString());
+        c.setCidade(etCidade.getText().toString());
         c.setTelefone(etTelefoneCliente.getText().toString());
         databaseHelper.createCliente(c);
         Toast.makeText(getActivity(), "Cliente salvo", Toast.LENGTH_LONG).show();

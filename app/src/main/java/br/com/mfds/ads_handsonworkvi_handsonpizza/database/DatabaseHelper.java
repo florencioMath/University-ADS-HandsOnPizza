@@ -29,7 +29,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_CLIENTE = "CREATE TABLE " + TABLE_CLIENTE + "(" +
             "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "nome VARCHAR(100), " +
-            "endereco VARCHAR(100), " +
+            "cep VARCHAR(9), " +
+            "logradouro VARCHAR(200), " +
+            "numero INTEGER, " +
+            "bairro VARCHAR(50), " +
+            "cidade VARCHAR(100), " +
             "cpf VARCHAR(15), " +
             "telefone VARCHAR(15));";
 
@@ -130,8 +134,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("nome", c.getNome());
-        cv.put("endereco", c.getEndereco());
         cv.put("cpf", c.getCpf());
+        cv.put("cep", c.getCep());
+        cv.put("logradouro", c.getLogradouro());
+        cv.put("numero", c.getNumero());
+        cv.put("bairro", c.getBairro());
+        cv.put("cidade", c.getCidade());
         cv.put("telefone", c.getTelefone());
         long id = db.insert(TABLE_CLIENTE, null, cv);
         db.close();
@@ -143,8 +151,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("nome", c.getNome());
-        cv.put("endereco", c.getEndereco());
         cv.put("cpf", c.getCpf());
+        cv.put("cep", c.getCep());
+        cv.put("logradouro", c.getLogradouro());
+        cv.put("numero", c.getNumero());
+        cv.put("bairro", c.getBairro());
+        cv.put("cidade", c.getCidade());
         cv.put("telefone", c.getTelefone());
         long id = db.update(TABLE_CLIENTE, cv, "_id = ?", new String[]{String.valueOf(c.getId())});
         db.close();
@@ -162,9 +174,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /* Traz todos os Cliente*/
     public void getAllCliente(Context context, ListView lv) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] columns = {"_id", "nome", "endereco", "cpf", "telefone"};
+        String[] columns = {"_id","nome","cpf" ,"cep" ,"logradouro" ,"numero" ,"bairro" ,"cidade", "telefone"};
         Cursor data = db.query(TABLE_CLIENTE, columns, null, null, null, null, "nome");
-        int[] to = {R.id.textViewIdListarCliente, R.id.textViewNomeListarCliente, R.id.textViewEnderecoListarCliente, R.id.textViewCpfListarCliente, R.id.textViewTelefoneListarCliente};
+        int[] to = {R.id.textViewIdListarCliente, R.id.textViewNomeListarCliente, R.id.textViewCpfListarCliente,R.id.textView_cep_cliente,R.id.textView_logradouro_cliente, R.id.textView_numero_cliente, R.id.textView_bairro_cliente, R.id.textView_cidade_cliente, R.id.textViewTelefoneListarCliente};
         SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(context, R.layout.cliente_item_list_view, data, columns, to, 0);
         lv.setAdapter(simpleCursorAdapter);
         db.close();
@@ -173,15 +185,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /* Pega o Cliente pelo ID*/
     public Cliente getByIdCliente(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] columns = {"_id", "nome", "endereco", "cpf", "telefone"};
+        String[] columns = {"_id","nome","cpf" ,"cep" ,"logradouro" ,"numero" ,"bairro" ,"cidade", "telefone"};
         String[] args = {String.valueOf(id)};
         Cursor data = db.query(TABLE_CLIENTE, columns, "_id = ?", args, null, null, null);
         data.moveToFirst();
         Cliente c = new Cliente();
         c.setId(data.getInt(0));
         c.setNome(data.getString(1));
-        c.setEndereco(data.getString(2));
         c.setCpf(data.getString(3));
+        c.setCep(data.getString(2));
+        c.setLogradouro(data.getString(2));
+        c.setNumero(data.getInt(3));
+        c.setBairro(data.getString(4));
+        c.setCidade(data.getString(5));
         c.setTelefone(data.getString(4));
         data.close();
         db.close();

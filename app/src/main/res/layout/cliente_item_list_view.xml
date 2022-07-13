@@ -16,12 +16,32 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/textViewEnderecoListarCliente"
+        android:id="@+id/textViewCpfListarCliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/textViewCpfListarCliente"
+        android:id="@+id/textView_cep_cliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView_logradouro_cliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView_numero_cliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView_bairro_cliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView_cidade_cliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

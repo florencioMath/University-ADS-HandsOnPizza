@@ -26,4 +26,9 @@
     <string name="sim">Sim</string>
     <string name="nao">Não</string>
     <string name="deseja_excluir_pizza">Deseja excluir a Pizza?</string>
+    <string name="cep">Cep</string>
+    <string name="logradouro">Logradouro</string>
+    <string name="numero">Numero</string>
+    <string name="bairro">Bairro</string>
+    <string name="cidade">Cidade</string>
 </resources>

@@ -45,15 +45,28 @@ public class EditarFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.cliente_fragment_editar, container, false);
+        Bundle b = getArguments();
+        int id_cliente = b.getInt("id");
+        databaseHelper = new DatabaseHelper(getActivity());
+        c = databaseHelper.getByIdCliente(id_cliente);
 
-        etNomeCliente = v.findViewById(R.id.editText_nome_cliente);
-        etCpf = v.findViewById(R.id.editText_cpf_cliente);
-        etCep = v.findViewById(R.id.editText_cep_cliente);
-        etLogradouro = v.findViewById(R.id.editText_logradouro_cliente);
-        etNumero = v.findViewById(R.id.editText_numero_cliente);
-        etBairro = v.findViewById(R.id.editText_bairro_cliente);
-        etCidade = v.findViewById(R.id.editText_cidade_cliente);
-        etTelefoneCliente = v.findViewById(R.id.editText_telefone_cliente);
+        etNomeCliente = v.findViewById(R.id.editTextEditarNomeCliente);
+        etCpf = v.findViewById(R.id.editTextEditarCpfCliente);
+        etCep = v.findViewById(R.id.editTextEditarCepCliente);
+        etLogradouro = v.findViewById(R.id.editTextEditarLogradouroCliente);
+        etNumero = v.findViewById(R.id.editTextEditarNumeroCliente);
+        etBairro = v.findViewById(R.id.editTextEditarBairroCliente);
+        etCidade = v.findViewById(R.id.editTextEditarCidadeCliente);
+        etTelefoneCliente = v.findViewById(R.id.editTextEditarTelefoneCliente);
+
+        etNomeCliente.setText(c.getNome());
+        etCpf.setText(c.getCpf());
+        etCep.setText(c.getCep());
+        etLogradouro.setText(c.getLogradouro());
+        etNumero.setText(String.valueOf(c.getNumero()));
+        etBairro.setText(c.getBairro());
+        etCidade.setText(c.getCidade());
+        etTelefoneCliente.setText(c.getTelefone());
 
         etCep.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -74,19 +87,6 @@ public class EditarFragment extends Fragment {
                 }
             }
         });
-
-        Bundle b = getArguments();
-        int id_cliente = b.getInt("id");
-        databaseHelper = new DatabaseHelper(getActivity());
-        c = databaseHelper.getByIdCliente(id_cliente);
-        etNomeCliente.setText(c.getNome());
-        etCpf.setText(c.getCpf());
-        etCep.setText(c.getCep());
-        etLogradouro.setText(c.getLogradouro());
-        etNumero.setText(c.getNumero());
-        etBairro.setText(c.getBairro());
-        etCidade.setText(c.getCidade());
-        etTelefoneCliente.setText(c.getTelefone());
 
         Button btnVoltar = v.findViewById(R.id.button_voltar_editar_cliente);
         btnVoltar.setOnClickListener(new View.OnClickListener() {
@@ -149,15 +149,16 @@ public class EditarFragment extends Fragment {
         } else if(etTelefoneCliente.getText().toString().equals("")){
             Toast.makeText(getActivity(), "Por favor, Informe o telefone do Cliente",Toast.LENGTH_LONG).show();
         } else {
-            c = new Cliente();
+            DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
+            Cliente c = new Cliente();
             c.setId(id);
             c.setNome(etNomeCliente.getText().toString());
             c.setCpf(etCpf.getText().toString());
-            c.setCpf(etCep.getText().toString());
-            c.setCpf(etLogradouro.getText().toString());
-            c.setCpf(etNumero.getText().toString());
-            c.setCpf(etBairro.getText().toString());
-            c.setCpf(etCidade.getText().toString());
+            c.setCep(etCep.getText().toString());
+            c.setLogradouro(etLogradouro.getText().toString());
+            c.setNumero(Integer.parseInt(etNumero.getText().toString()));
+            c.setBairro(etBairro.getText().toString());
+            c.setCidade(etCidade.getText().toString());
             c.setTelefone(etTelefoneCliente.getText().toString());
             databaseHelper.updateCliente(c);
             Toast.makeText(getActivity(), "Cliente atualizado", Toast.LENGTH_LONG).show();

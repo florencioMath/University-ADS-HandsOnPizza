@@ -16,7 +16,7 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/textViewEditarCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
@@ -25,112 +25,112 @@
                 android:text="@string/editar" />
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/textViewEditarNomeCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
                 android:text="@string/nome" />
 
             <EditText
-                android:id="@+id/editText_nome_cliente"
+                android:id="@+id/editTextEditarNomeCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/textViewEditarCpfCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
                 android:text="@string/cpf" />
 
             <EditText
-                android:id="@+id/editText_cpf_cliente"
+                android:id="@+id/editTextEditarCpfCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
 
             <TextView
-                android:id="@+id/textView_cep_cliente"
+                android:id="@+id/textViewEditarCepCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/cep" />
 
             <EditText
-                android:id="@+id/editText_cep_cliente"
+                android:id="@+id/editTextEditarCepCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
 
             <TextView
-                android:id="@+id/textView_logradouro_cliente"
+                android:id="@+id/textViewEditarLogradouroCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/logradouro" />
 
             <EditText
-                android:id="@+id/editText_logradouro_cliente"
+                android:id="@+id/editTextEditarLogradouroCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
             <TextView
-                android:id="@+id/textView_numero_cliente"
+                android:id="@+id/textViewEditarNumeroCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/numero" />
 
             <EditText
-                android:id="@+id/editText_numero_cliente"
+                android:id="@+id/editTextEditarNumeroCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
 
             <TextView
-                android:id="@+id/textView_bairro_cliente"
+                android:id="@+id/textViewEditarBairroCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/bairro" />
 
             <EditText
-                android:id="@+id/editText_bairro_cliente"
+                android:id="@+id/editTextEditarBairroCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
             <TextView
-                android:id="@+id/textView_cidade_cliente"
+                android:id="@+id/textViewEditarCidadeCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/cidade" />
 
             <EditText
-                android:id="@+id/editText_cidade_cliente"
+                android:id="@+id/editTextEditarCidadeCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/textViewEditarTelefoneCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
                 android:text="@string/telefone" />
 
             <EditText
-                android:id="@+id/editText_telefone_cliente"
+                android:id="@+id/editTextEditarTelefoneCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"

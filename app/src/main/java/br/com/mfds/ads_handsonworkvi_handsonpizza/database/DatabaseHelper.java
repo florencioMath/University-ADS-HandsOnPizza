@@ -29,12 +29,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_CLIENTE = "CREATE TABLE " + TABLE_CLIENTE + "(" +
             "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "nome VARCHAR(100), " +
+            "cpf VARCHAR(15), " +
             "cep VARCHAR(9), " +
             "logradouro VARCHAR(200), " +
             "numero INTEGER, " +
             "bairro VARCHAR(50), " +
             "cidade VARCHAR(100), " +
-            "cpf VARCHAR(15), " +
             "telefone VARCHAR(15));";
 
     private static final String CREATE_TABLE_FORNECEDOR = "CREATE TABLE " + TABLE_FORNECEDOR + "(" +
@@ -176,7 +176,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = {"_id","nome","cpf" ,"cep" ,"logradouro" ,"numero" ,"bairro" ,"cidade", "telefone"};
         Cursor data = db.query(TABLE_CLIENTE, columns, null, null, null, null, "nome");
-        int[] to = {R.id.textViewIdListarCliente, R.id.textViewNomeListarCliente, R.id.textViewCpfListarCliente,R.id.textView_cep_cliente,R.id.textView_logradouro_cliente, R.id.textView_numero_cliente, R.id.textView_bairro_cliente, R.id.textView_cidade_cliente, R.id.textViewTelefoneListarCliente};
+        int[] to = {R.id.textViewListarIdCliente, R.id.textViewListarNomeCliente, R.id.textViewListarCpfCliente,R.id.textViewListarCepCliente,R.id.textViewListarLogradouroCliente, R.id.textViewListarNumeroCliente, R.id.textViewListarBairroCliente, R.id.textViewListarCidadeCliente, R.id.textViewListarTelefoneCliente};
         SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(context, R.layout.cliente_item_list_view, data, columns, to, 0);
         lv.setAdapter(simpleCursorAdapter);
         db.close();
@@ -192,13 +192,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cliente c = new Cliente();
         c.setId(data.getInt(0));
         c.setNome(data.getString(1));
-        c.setCpf(data.getString(3));
-        c.setCep(data.getString(2));
-        c.setLogradouro(data.getString(2));
-        c.setNumero(data.getInt(3));
-        c.setBairro(data.getString(4));
-        c.setCidade(data.getString(5));
-        c.setTelefone(data.getString(4));
+        c.setCpf(data.getString(2));
+        c.setCep(data.getString(3));
+        c.setLogradouro(data.getString(4));
+        c.setNumero(data.getInt(5));
+        c.setBairro(data.getString(6));
+        c.setCidade(data.getString(7));
+        c.setTelefone(data.getString(8));
         data.close();
         db.close();
         return c;

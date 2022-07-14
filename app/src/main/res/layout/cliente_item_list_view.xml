@@ -5,48 +5,48 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textViewIdListarCliente"
+        android:id="@+id/textViewListarIdCliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="invisible" />
 
     <TextView
-        android:id="@+id/textViewNomeListarCliente"
+        android:id="@+id/textViewListarNomeCliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/textViewCpfListarCliente"
+        android:id="@+id/textViewListarCpfCliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/textView_cep_cliente"
+        android:id="@+id/textViewListarCepCliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/textView_logradouro_cliente"
+        android:id="@+id/textViewListarLogradouroCliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/textView_numero_cliente"
+        android:id="@+id/textViewListarNumeroCliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/textView_bairro_cliente"
+        android:id="@+id/textViewListarBairroCliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/textView_cidade_cliente"
+        android:id="@+id/textViewListarCidadeCliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/textViewTelefoneListarCliente"
+        android:id="@+id/textViewListarTelefoneCliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

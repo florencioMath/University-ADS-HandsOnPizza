@@ -42,14 +42,14 @@ public class AdicionarFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.cliente_fragment_adicionar, container, false);
 
-        etNomeCliente = v.findViewById(R.id.editText_nome_cliente);
-        etCpf = v.findViewById(R.id.editText_cpf_cliente);
-        etCep = v.findViewById(R.id.editText_cep_cliente);
-        etLogradouro = v.findViewById(R.id.editText_logradouro_cliente);
-        etNumero = v.findViewById(R.id.editText_numero_cliente);
-        etBairro = v.findViewById(R.id.editText_bairro_cliente);
-        etCidade = v.findViewById(R.id.editText_cidade_cliente);
-        etTelefoneCliente = v.findViewById(R.id.editText_telefone_cliente);
+        etNomeCliente = v.findViewById(R.id.editTextEditarNomeCliente);
+        etCpf = v.findViewById(R.id.editTextEditarCpfCliente);
+        etCep = v.findViewById(R.id.editTextEditarCepCliente);
+        etLogradouro = v.findViewById(R.id.editTextEditarLogradouroCliente);
+        etNumero = v.findViewById(R.id.editTextEditarNumeroCliente);
+        etBairro = v.findViewById(R.id.editTextEditarBairroCliente);
+        etCidade = v.findViewById(R.id.editTextEditarCidadeCliente);
+        etTelefoneCliente = v.findViewById(R.id.editTextEditarTelefoneCliente);
 
         etCep.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

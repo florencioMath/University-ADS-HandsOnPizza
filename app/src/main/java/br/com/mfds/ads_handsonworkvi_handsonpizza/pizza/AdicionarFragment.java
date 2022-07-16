@@ -22,6 +22,7 @@ public class AdicionarFragment extends Fragment {
 
     public AdicionarFragment() {}
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +31,8 @@ public class AdicionarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Button btnAdicionarClienteMain = getParentFragmentManager().findFragmentById(R.id.frame_pizza).getActivity().findViewById(R.id.button_adicionar_pizza);
+        btnAdicionarClienteMain.setVisibility(View.GONE);
 
         View v = inflater.inflate(R.layout.pizza_fragment_adicionar, container, false);
 
@@ -41,7 +44,25 @@ public class AdicionarFragment extends Fragment {
         btnAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                adicionar();
+
+                /* Função que adiciona as pizza ao banco de dados */
+                if(etNome.getText().toString().equals("")){
+                    Toast.makeText(getActivity(), "Por favor, Informe o nome da Pizza",Toast.LENGTH_LONG).show();
+                } else if(etIngredientes.getText().toString().equals("")){
+                    Toast.makeText(getActivity(), "Por favor, Informe os ingredientes da Pizza",Toast.LENGTH_LONG).show();
+                }  else if(etTempoPreparo.getText().toString().equals("")){
+                    Toast.makeText(getActivity(), "Por favor, Informe o tempo de preparo da Pizza",Toast.LENGTH_LONG).show();
+                } else {
+                    DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
+                    Pizza p = new Pizza();
+                    p.setNome(etNome.getText().toString());
+                    p.setIngredientes(etIngredientes.getText().toString());
+                    p.setTempo_preparo(etTempoPreparo.getText().toString());
+                    databaseHelper.createPizza(p);
+                    Toast.makeText(getActivity(), "Pizza Salvo", Toast.LENGTH_LONG).show();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_pizza, new ListarFragment()).commit();
+                    btnAdicionarClienteMain.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -50,6 +71,7 @@ public class AdicionarFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_pizza, new ListarFragment()).commit();
+                btnAdicionarClienteMain.setVisibility(View.VISIBLE);
             }
         });
 
@@ -58,23 +80,4 @@ public class AdicionarFragment extends Fragment {
         return v;
     }
 
-    /* Função que adiciona as pizza ao banco de dados */
-    private void adicionar() {
-        if(etNome.getText().toString().equals("")){
-            Toast.makeText(getActivity(), "Por favor, Informe o nome da Pizza",Toast.LENGTH_LONG).show();
-        } else if(etIngredientes.getText().toString().equals("")){
-            Toast.makeText(getActivity(), "Por favor, Informe os ingredientes da Pizza",Toast.LENGTH_LONG).show();
-        }  else if(etTempoPreparo.getText().toString().equals("")){
-            Toast.makeText(getActivity(), "Por favor, Informe o tempo de preparo da Pizza",Toast.LENGTH_LONG).show();
-        } else {
-            DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
-            Pizza p = new Pizza();
-            p.setNome(etNome.getText().toString());
-            p.setIngredientes(etIngredientes.getText().toString());
-            p.setTempo_preparo(etTempoPreparo.getText().toString());
-            databaseHelper.createPizza(p);
-            Toast.makeText(getActivity(), "Pizza Salvo", Toast.LENGTH_LONG).show();
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_pizza, new ListarFragment()).commit();
-        }
-    }
 }

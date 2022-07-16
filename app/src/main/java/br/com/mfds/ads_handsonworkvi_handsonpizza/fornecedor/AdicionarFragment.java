@@ -29,6 +29,8 @@ public class AdicionarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Button btnAdicionarClienteMain = getParentFragmentManager().findFragmentById(R.id.frame_fornecedor).getActivity().findViewById(R.id.button_adicionar_fornecedor);
+        btnAdicionarClienteMain.setVisibility(View.GONE);
 
         View v = inflater.inflate(R.layout.fornecedor_fragment_adicionar, container, false);
 
@@ -41,7 +43,28 @@ public class AdicionarFragment extends Fragment {
         btnAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                adicionar();
+
+                /* Função que adiciona os fornecedor ao banco de dados */
+                if(etNomeFornecedor.getText().toString().equals("")) {
+                    Toast.makeText(getActivity(), "Por favor, Informe o nome do Fornecedor", Toast.LENGTH_LONG).show();
+                }   else if (etEnderecoFornecedor.getText().toString().equals("")) {
+                    Toast.makeText(getActivity(), "Por favor, Informe o endereço do Fornecedor", Toast.LENGTH_LONG).show();
+                }   else if (etCnpj.getText().toString().equals("")) {
+                    Toast.makeText(getActivity(), "Por favor, Informe o CNPJ do Fornecedor", Toast.LENGTH_LONG).show();
+                }   else if (etTelefoneFornecedor.getText().toString().equals("")) {
+                    Toast.makeText(getActivity(), "Por favor, Informe o telefone do Fornecedor", Toast.LENGTH_LONG).show();
+                }   else {
+                    DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
+                    Fornecedor f = new Fornecedor();
+                    f.setNome(etNomeFornecedor.getText().toString());
+                    f.setEndereco(etEnderecoFornecedor.getText().toString());
+                    f.setCnpj(etCnpj.getText().toString());
+                    f.setTelefone(etTelefoneFornecedor.getText().toString());
+                    databaseHelper.createFornecedor(f);
+                    Toast.makeText(getActivity(), "Fornecedor salvo", Toast.LENGTH_LONG).show();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_fornecedor, new ListarFragment()).commit();
+                    btnAdicionarClienteMain.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -50,32 +73,11 @@ public class AdicionarFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_fornecedor, new ListarFragment()).commit();
+                btnAdicionarClienteMain.setVisibility(View.VISIBLE);
             }
         });
 
         // Inflate the layout for this fragment
         return v;
-    }
-    /* Função que adiciona os fornecedor ao banco de dados */
-    private void adicionar() {
-        if(etNomeFornecedor.getText().toString().equals("")) {
-            Toast.makeText(getActivity(), "Por favor, Informe o nome do Fornecedor", Toast.LENGTH_LONG).show();
-        }   else if (etEnderecoFornecedor.getText().toString().equals("")) {
-            Toast.makeText(getActivity(), "Por favor, Informe o endereço do Fornecedor", Toast.LENGTH_LONG).show();
-        }   else if (etCnpj.getText().toString().equals("")) {
-            Toast.makeText(getActivity(), "Por favor, Informe o CNPJ do Fornecedor", Toast.LENGTH_LONG).show();
-        }   else if (etTelefoneFornecedor.getText().toString().equals("")) {
-            Toast.makeText(getActivity(), "Por favor, Informe o telefone do Fornecedor", Toast.LENGTH_LONG).show();
-        }   else {
-            DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
-            Fornecedor f = new Fornecedor();
-            f.setNome(etNomeFornecedor.getText().toString());
-            f.setEndereco(etEnderecoFornecedor.getText().toString());
-            f.setCnpj(etCnpj.getText().toString());
-            f.setTelefone(etTelefoneFornecedor.getText().toString());
-            databaseHelper.createFornecedor(f);
-            Toast.makeText(getActivity(), "Fornecedor salvo", Toast.LENGTH_LONG).show();
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_fornecedor, new ListarFragment()).commit();
-        }
     }
 }

@@ -33,15 +33,6 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button_listar_fornecedor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_weight="1"
-                android:layout_gravity="bottom"
-                android:text="@string/listar" />
-
-            <Button
                 android:id="@+id/button_adicionar_fornecedor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -76,17 +76,25 @@
                     android:id="@+id/button_voltar_adicionar_pizza"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:layout_marginRight="5dp"
-                    android:text="@string/voltar" />
+                    android:backgroundTint="#F57F17"
+                    android:padding="15dp"
+                    android:text="@string/voltar"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/button_adicionar_pizza"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:layout_marginLeft="5dp"
-                    android:text="@string/salvar" />
+                    android:backgroundTint="#33691E"
+                    android:padding="15dp"
+                    android:text="@string/salvar"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>

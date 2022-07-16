@@ -39,6 +39,8 @@ public class AdicionarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Button btnAdicionarClienteMain = getParentFragmentManager().findFragmentById(R.id.frame_cliente).getActivity().findViewById(R.id.button_adicionar_cliente);
+        btnAdicionarClienteMain.setVisibility(View.GONE);
 
         View v = inflater.inflate(R.layout.cliente_fragment_adicionar, container, false);
 
@@ -73,7 +75,40 @@ public class AdicionarFragment extends Fragment {
         btnAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                adicionar();
+                /* Adiciona os cliente ao banco de dados */
+
+                if(etNomeCliente.getText().toString().equals("")) {
+                        Toast.makeText(getActivity(), "Por favor, Informe o nome do Cliente", Toast.LENGTH_LONG).show();
+                    } else if (etCpf.getText().toString().equals("")) {
+                        Toast.makeText(getActivity(), "Por favor, Informe o CPF do Cliente", Toast.LENGTH_LONG).show();
+                    }  else if (etCep.getText().toString().equals("")) {
+                        Toast.makeText(getActivity(), "Por favor, Informe o CEP do Cliente", Toast.LENGTH_LONG).show();
+                    } else if (etLogradouro.getText().toString().equals("")) {
+                        Toast.makeText(getActivity(), "Por favor, Informe o Logradouro do Cliente", Toast.LENGTH_LONG).show();
+                    } else if (etNumero.getText().toString().equals("")) {
+                        Toast.makeText(getActivity(), "Por favor, Informe o Numero do Cliente", Toast.LENGTH_LONG).show();
+                    } else if (etBairro.getText().toString().equals("")) {
+                        Toast.makeText(getActivity(), "Por favor, Informe o Bairro do Cliente", Toast.LENGTH_LONG).show();
+                    } else if (etCidade.getText().toString().equals("")) {
+                        Toast.makeText(getActivity(), "Por favor, Informe a Cidade do Cliente", Toast.LENGTH_LONG).show();
+                    }else if (etTelefoneCliente.getText().toString().equals("")) {
+                        Toast.makeText(getActivity(), "Por favor, Informe o telefone do Cliente", Toast.LENGTH_LONG).show();
+                    } else {
+                        DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
+                        Cliente c = new Cliente();
+                        c.setNome(etNomeCliente.getText().toString());
+                        c.setCpf(etCpf.getText().toString());
+                        c.setCep(etCep.getText().toString());
+                        c.setLogradouro(etLogradouro.getText().toString());
+                        c.setNumero(Integer.parseInt(etNumero.getText().toString()));
+                        c.setBairro(etBairro.getText().toString());
+                        c.setCidade(etCidade.getText().toString());
+                        c.setTelefone(etTelefoneCliente.getText().toString());
+                        databaseHelper.createCliente(c);
+                        Toast.makeText(getActivity(), "Cliente salvo", Toast.LENGTH_LONG).show();
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_cliente, new ListarFragment()).commit();
+                        btnAdicionarClienteMain.setVisibility(View.VISIBLE);}
+
             }
         });
 
@@ -82,6 +117,7 @@ public class AdicionarFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_cliente, new ListarFragment()).commit();
+                btnAdicionarClienteMain.setVisibility(View.VISIBLE);
             }
         });
 
@@ -89,38 +125,4 @@ public class AdicionarFragment extends Fragment {
         return v;
     }
 
-    /* Função que adiciona os cliente ao banco de dados */
-    private void adicionar() {
-    if(etNomeCliente.getText().toString().equals("")) {
-        Toast.makeText(getActivity(), "Por favor, Informe o nome do Cliente", Toast.LENGTH_LONG).show();
-    } else if (etCpf.getText().toString().equals("")) {
-            Toast.makeText(getActivity(), "Por favor, Informe o CPF do Cliente", Toast.LENGTH_LONG).show();
-    }  else if (etCep.getText().toString().equals("")) {
-        Toast.makeText(getActivity(), "Por favor, Informe o CEP do Cliente", Toast.LENGTH_LONG).show();
-    } else if (etLogradouro.getText().toString().equals("")) {
-        Toast.makeText(getActivity(), "Por favor, Informe o Logradouro do Cliente", Toast.LENGTH_LONG).show();
-    } else if (etNumero.getText().toString().equals("")) {
-        Toast.makeText(getActivity(), "Por favor, Informe o Numero do Cliente", Toast.LENGTH_LONG).show();
-    } else if (etBairro.getText().toString().equals("")) {
-        Toast.makeText(getActivity(), "Por favor, Informe o Bairro do Cliente", Toast.LENGTH_LONG).show();
-    } else if (etCidade.getText().toString().equals("")) {
-        Toast.makeText(getActivity(), "Por favor, Informe a Cidade do Cliente", Toast.LENGTH_LONG).show();
-    }else if (etTelefoneCliente.getText().toString().equals("")) {
-            Toast.makeText(getActivity(), "Por favor, Informe o telefone do Cliente", Toast.LENGTH_LONG).show();
-    }   else {
-        DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
-        Cliente c = new Cliente();
-        c.setNome(etNomeCliente.getText().toString());
-        c.setCpf(etCpf.getText().toString());
-        c.setCep(etCep.getText().toString());
-        c.setLogradouro(etLogradouro.getText().toString());
-        c.setNumero(Integer.parseInt(etNumero.getText().toString()));
-        c.setBairro(etBairro.getText().toString());
-        c.setCidade(etCidade.getText().toString());
-        c.setTelefone(etTelefoneCliente.getText().toString());
-        databaseHelper.createCliente(c);
-        Toast.makeText(getActivity(), "Cliente salvo", Toast.LENGTH_LONG).show();
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_cliente, new ListarFragment()).commit();
-        }
-    }
 }

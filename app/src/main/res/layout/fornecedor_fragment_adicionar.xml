@@ -3,115 +3,116 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp"
+    android:paddingStart="15dp"
+    android:paddingEnd="15dp"
     tools:context=".fornecedor.AdicionarFragment">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:padding="10dp"
-                android:textAlignment="center"
-                android:text="@string/adicionar" />
-
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:text="@string/nome" />
-
-            <EditText
-                android:id="@+id/editText_nome_fornecedor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:text="@string/endereco" />
-
-            <EditText
-                android:id="@+id/editText_endereco_fornecedor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
-
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:text="@string/cnpj" />
-
-            <EditText
-                android:id="@+id/editText_cnpj_fornecedor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number" />
-
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:text="@string/telefone" />
-
-            <EditText
-                android:id="@+id/editText_telefone_fornecedor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="phone" />
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-                <Button
-                    android:id="@+id/button_voltar_adicionar_fornecedor"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#F57F17"
-                    android:padding="15dp"
-                    android:text="@string/voltar"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:textAlignment="center"
+                    android:text="@string/adicionar" />
 
-                <Button
-                    android:id="@+id/button_adicionar_fornecedor"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#33691E"
-                    android:padding="15dp"
-                    android:text="@string/salvar"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:paddingTop="10dp"
+                    android:text="@string/nome" />
+
+                <EditText
+                    android:id="@+id/editText_nome_fornecedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="@string/endereco" />
+
+                <EditText
+                    android:id="@+id/editText_endereco_fornecedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="@string/cnpj" />
+
+                <EditText
+                    android:id="@+id/editText_cnpj_fornecedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="@string/telefone" />
+
+                <EditText
+                    android:id="@+id/editText_telefone_fornecedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="phone" />
             </LinearLayout>
 
-        </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_voltar_adicionar_fornecedor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:backgroundTint="#F57F17"
+            android:padding="15dp"
+            android:text="@string/voltar"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button_adicionar_fornecedor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:backgroundTint="#33691E"
+            android:padding="15dp"
+            android:text="@string/salvar"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 </FrameLayout>

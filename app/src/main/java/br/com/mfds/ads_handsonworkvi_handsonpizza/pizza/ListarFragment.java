@@ -40,10 +40,12 @@ public class ListarFragment extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            // Passa por parâmetro o valor do ID do pizza que foi clicado
             TextView tvId = view.findViewById(R.id.textViewIdListarPizza);
             Bundle b = new Bundle();
             b.putInt("id", Integer.parseInt(tvId.getText().toString()));
 
+            // Substitui o valor atual do fragmento FramePizza (ListarFragment) para o novo valor (EditarFragment), passando o ID como parâmetro
             EditarFragment editar = new EditarFragment();
             FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
             editar.setArguments(b);

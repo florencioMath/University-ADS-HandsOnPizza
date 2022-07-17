@@ -22,6 +22,7 @@ public class RetornarEnderecoPeloCep extends AsyncTask<Void, Void, DadosEndereco
     protected DadosEndereco doInBackground(Void... voids) {
         StringBuilder resposta = new StringBuilder();
 
+        // Defini a string da URL do serviço
         String urlString = "https://viacep.com.br/ws/" + this.cep + "/json/";
 
         try {
@@ -40,6 +41,7 @@ public class RetornarEnderecoPeloCep extends AsyncTask<Void, Void, DadosEndereco
             e.printStackTrace();
         }
 
+        // Utiliza a biblioteca GSON (definida no arquivo build.gradle do módulo) para auxiliar na recuperação dos valores do JSON
         Gson gson = new Gson();
 
         return gson.fromJson(resposta.toString(), DadosEndereco.class);

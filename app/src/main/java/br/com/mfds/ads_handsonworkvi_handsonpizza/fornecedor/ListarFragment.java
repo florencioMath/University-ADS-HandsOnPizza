@@ -39,11 +39,13 @@ public class ListarFragment extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                // Passa por parâmetro o valor do ID do fornecedor que foi clicado
                 TextView tvId = view.findViewById(R.id.textViewIdListarFornecedor);
                 Bundle b = new Bundle();
                 b.putInt("id", Integer.parseInt(tvId.getText().toString()));
 
-                br.com.mfds.ads_handsonworkvi_handsonpizza.fornecedor.EditarFragment editar = new EditarFragment();
+                // Substitui o valor atual do fragmento FrameFornecedor (ListarFragment) para o novo valor (EditarFragment), passando o ID como parâmetro
+                EditarFragment editar = new EditarFragment();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 editar.setArguments(b);
                 ft.replace(R.id.frame_fornecedor, editar).commit();

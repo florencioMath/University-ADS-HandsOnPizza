@@ -37,6 +37,7 @@ public class MenuFragment extends Fragment {
         inflater.inflate(R.menu.menu, menu);
     }
     public boolean onOptionsItemSelected (MenuItem item) {
+        // Verifica qual opção foi selecionada pelo usuário
         switch (item.getItemId()) {
             case R.id.menu_pizza:
                 Toast.makeText(getActivity(), "Menu Pizza", Toast.LENGTH_SHORT).show();

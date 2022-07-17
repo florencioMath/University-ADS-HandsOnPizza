@@ -48,9 +48,11 @@ public class EditarFragment extends Fragment {
         Button btnAdicionarClienteMain = getParentFragmentManager().findFragmentById(R.id.frame_cliente).getActivity().findViewById(R.id.button_adicionar_cliente);
         btnAdicionarClienteMain.setVisibility(View.GONE);
 
+        // Recupera o valor do ID enviado por parâmetro ao clicar no ListarFragment
         Bundle b = getArguments();
         int id_cliente = b.getInt("id");
         databaseHelper = new DatabaseHelper(getActivity());
+        // Busca os dados do Cliente do valor do ID
         c = databaseHelper.getByIdCliente(id_cliente);
 
         etNomeCliente = v.findViewById(R.id.editTextEditarNomeCliente);
@@ -62,6 +64,7 @@ public class EditarFragment extends Fragment {
         etCidade = v.findViewById(R.id.editTextEditarCidadeCliente);
         etTelefoneCliente = v.findViewById(R.id.editTextEditarTelefoneCliente);
 
+        // Seta nos campos da interface os valores do banco de dados do ID do Cliente, recuperado via parâmetro
         etNomeCliente.setText(c.getNome());
         etCpf.setText(c.getCpf());
         etCep.setText(c.getCep());
@@ -71,6 +74,7 @@ public class EditarFragment extends Fragment {
         etCidade.setText(c.getCidade());
         etTelefoneCliente.setText(c.getTelefone());
 
+        // Quando o foco sair do campo do CEP, é executado o WS para recuperar os dados do CEP informado
         etCep.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
@@ -111,6 +115,7 @@ public class EditarFragment extends Fragment {
 
         Button btnExcluir = v.findViewById(R.id.button_excluir_cliente);
         btnExcluir.setOnClickListener(new View.OnClickListener() {
+            // Cria um alerta para o usuário informar Sim ou Não para a exclusão
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -156,6 +161,7 @@ public class EditarFragment extends Fragment {
             Toast.makeText(getActivity(), "Por favor, Informe o telefone do Cliente",Toast.LENGTH_LONG).show();
         } else {
             DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
+            // Setar os valores para a classe Cliente
             Cliente c = new Cliente();
             c.setId(id);
             c.setNome(etNomeCliente.getText().toString());
@@ -168,6 +174,7 @@ public class EditarFragment extends Fragment {
             c.setTelefone(etTelefoneCliente.getText().toString());
             databaseHelper.updateCliente(c);
             Toast.makeText(getActivity(), "Cliente atualizado", Toast.LENGTH_LONG).show();
+            // Substitui o valor atual do fragmento FrameCliente (EditarFragment) para o novo valor (ListarFragment)
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_cliente, new ListarFragment()).commit();
         }
     }
@@ -178,6 +185,7 @@ public class EditarFragment extends Fragment {
         c.setId(id);
         databaseHelper.deleteCliente(c);
         Toast.makeText(getActivity(), "Cliente excluído", Toast.LENGTH_LONG).show();
+        // Substitui o valor atual do fragmento FrameCliente (EditarFragment) para o novo valor (ListarFragment)
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_cliente, new ListarFragment()).commit();
     }
 

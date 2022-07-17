@@ -31,11 +31,12 @@ public class AdicionarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Button btnAdicionarClienteMain = getParentFragmentManager().findFragmentById(R.id.frame_pizza).getActivity().findViewById(R.id.button_adicionar_pizza);
-        btnAdicionarClienteMain.setVisibility(View.GONE);
+        Button btnAdicionarPizzaMain = getParentFragmentManager().findFragmentById(R.id.frame_pizza).getActivity().findViewById(R.id.button_adicionar_pizza);
+        btnAdicionarPizzaMain.setVisibility(View.GONE);
 
         View v = inflater.inflate(R.layout.pizza_fragment_adicionar, container, false);
 
+        // localiza os elementos da interface pelo ID (definidos no arquivo XML)
         etNome = v.findViewById(R.id.editText_nome_pizza);
         etIngredientes = v.findViewById((R.id.editText_ingredientes_pizza));
         etTempoPreparo = v.findViewById(R.id.editText_tempo_pizza);
@@ -54,14 +55,16 @@ public class AdicionarFragment extends Fragment {
                     Toast.makeText(getActivity(), "Por favor, Informe o tempo de preparo da Pizza",Toast.LENGTH_LONG).show();
                 } else {
                     DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
+                    // Setar os valores para a classe Pizza
                     Pizza p = new Pizza();
                     p.setNome(etNome.getText().toString());
                     p.setIngredientes(etIngredientes.getText().toString());
                     p.setTempo_preparo(etTempoPreparo.getText().toString());
                     databaseHelper.createPizza(p);
                     Toast.makeText(getActivity(), "Pizza Salvo", Toast.LENGTH_LONG).show();
+                    // Substitui o valor atual do fragmento FramePizza (AdicionarFragment) para o novo valor (ListarFragment)
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_pizza, new ListarFragment()).commit();
-                    btnAdicionarClienteMain.setVisibility(View.VISIBLE);
+                    btnAdicionarPizzaMain.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -71,7 +74,7 @@ public class AdicionarFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_pizza, new ListarFragment()).commit();
-                btnAdicionarClienteMain.setVisibility(View.VISIBLE);
+                btnAdicionarPizzaMain.setVisibility(View.VISIBLE);
             }
         });
 

@@ -15,6 +15,7 @@ import br.com.mfds.ads_handsonworkvi_handsonpizza.pizza.Pizza;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+    // Definição das variáveis globais
     private static final String DATABASE_NAME = "handsonpiza";
     private static final String TABLE_PIZZA = "pizza";
     private static final String TABLE_CLIENTE = "cliente";
@@ -48,10 +49,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DROP_TABLE_CLIENTE = "DROP TABLE IF EXISTS " + TABLE_CLIENTE;
     private static final String DROP_TABLE_FORNECEDOR = "DROP TABLE IF EXISTS " + TABLE_FORNECEDOR;
 
+    // Método construtor da classe, passando por parâmetro a versão do banco de dados
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1 );
     }
 
+    // Se ainda não existir o banco de dados, cria
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_PIZZA);
@@ -59,6 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_FORNECEDOR);
     }
 
+    // Se o banco de dados já existir e a versão for diferente, atualiza.
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(DROP_TABLE_PIZZA);
@@ -103,10 +107,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /* Traz todas as Pizza */
     public void getAllPizza (Context context, ListView lv) {
         SQLiteDatabase db = this.getReadableDatabase();
+        // Defini as colunas da consulta do SELECT
         String[] columns = {"_id", "nome", "ingredientes", "tempo_preparo"};
+        // Recupera os valores do banco de dados
         Cursor data = db.query(TABLE_PIZZA, columns, null, null, null, null, "nome");
+        // Campos do XML de destino para os valores do BD
         int[] to = {R.id.textViewIdListarPizza, R.id.textViewNomeListarPizza, R.id.textViewIngredientesListarPizza, R.id.textViewTempoPreparoListarPizza};
+        // Cria um adaptador utilizando o XML da pasta layout (mae_item_list_view) como padrão, para mostrar em cada item as informações presentes no banco de dados
         SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(context, R.layout.pizza_item_list_view, data, columns, to, 0);
+        // Seta o adaptador no ListView. Por isso, não há retorno, é apenas modificado a instância do ListView recebido por parâmetro.
         lv.setAdapter((simpleCursorAdapter));
         db.close();
     }
@@ -174,10 +183,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /* Traz todos os Cliente*/
     public void getAllCliente(Context context, ListView lv) {
         SQLiteDatabase db = this.getReadableDatabase();
+        // Defini as colunas da consulta do SELECT
         String[] columns = {"_id","nome","cpf" ,"cep" ,"logradouro" ,"numero" ,"bairro" ,"cidade", "telefone"};
+        // Recupera os valores do banco de dados
         Cursor data = db.query(TABLE_CLIENTE, columns, null, null, null, null, "nome");
+        // Campos do XML de destino para os valores do BD
         int[] to = {R.id.textViewListarIdCliente, R.id.textViewListarNomeCliente, R.id.textViewListarCpfCliente,R.id.textViewListarCepCliente,R.id.textViewListarLogradouroCliente, R.id.textViewListarNumeroCliente, R.id.textViewListarBairroCliente, R.id.textViewListarCidadeCliente, R.id.textViewListarTelefoneCliente};
+        // Cria um adaptador utilizando o XML da pasta layout (mae_item_list_view) como padrão, para mostrar em cada item as informações presentes no banco de dados
         SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(context, R.layout.cliente_item_list_view, data, columns, to, 0);
+        // Seta o adaptador no ListView. Por isso, não há retorno, é apenas modificado a instância do ListView recebido por parâmetro.
         lv.setAdapter(simpleCursorAdapter);
         db.close();
     }
@@ -242,10 +256,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /* Traz todos os Fornecedores*/
     public void getAllFornecedores(Context context, ListView lv) {
         SQLiteDatabase db = this.getReadableDatabase();
+        // Defini as colunas da consulta do SELECT
         String[] columns = {"_id", "nome", "endereco", "cnpj", "telefone"};
+        // Recupera os valores do banco de dados
         Cursor data = db.query(TABLE_FORNECEDOR, columns, null, null, null, null, "nome");
+        // Campos do XML de destino para os valores do BD
         int[] to = {R.id.textViewIdListarFornecedor, R.id.textViewNomeListarFornecedor, R.id.textViewEnderecoListarFornecedor, R.id.textViewCnpjListarFornecedor, R.id.textViewTelefoneListarFornecedor};
+        // Cria um adaptador utilizando o XML da pasta layout (mae_item_list_view) como padrão, para mostrar em cada item as informações presentes no banco de dados
         SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(context, R.layout.fornecedor_item_list_view, data, columns, to, 0);
+        // Seta o adaptador no ListView. Por isso, não há retorno, é apenas modificado a instância do ListView recebido por parâmetro.
         lv.setAdapter(simpleCursorAdapter);
         db.close();
     }

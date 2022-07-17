@@ -44,6 +44,7 @@ public class AdicionarFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.cliente_fragment_adicionar, container, false);
 
+        // localiza os elementos da interface pelo ID (definidos no arquivo XML)
         etNomeCliente = v.findViewById(R.id.editTextEditarNomeCliente);
         etCpf = v.findViewById(R.id.editTextEditarCpfCliente);
         etCep = v.findViewById(R.id.editTextEditarCepCliente);
@@ -53,6 +54,7 @@ public class AdicionarFragment extends Fragment {
         etCidade = v.findViewById(R.id.editTextEditarCidadeCliente);
         etTelefoneCliente = v.findViewById(R.id.editTextEditarTelefoneCliente);
 
+        // Quando o foco sair do campo do CEP, é executado o WS para recuperar os dados do CEP informado
         etCep.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
@@ -95,7 +97,8 @@ public class AdicionarFragment extends Fragment {
                         Toast.makeText(getActivity(), "Por favor, Informe o telefone do Cliente", Toast.LENGTH_LONG).show();
                     } else {
                         DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
-                        Cliente c = new Cliente();
+                    // Setar os valores para a classe Cliente
+                    Cliente c = new Cliente();
                         c.setNome(etNomeCliente.getText().toString());
                         c.setCpf(etCpf.getText().toString());
                         c.setCep(etCep.getText().toString());
@@ -106,7 +109,8 @@ public class AdicionarFragment extends Fragment {
                         c.setTelefone(etTelefoneCliente.getText().toString());
                         databaseHelper.createCliente(c);
                         Toast.makeText(getActivity(), "Cliente salvo", Toast.LENGTH_LONG).show();
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_cliente, new ListarFragment()).commit();
+                    // Substitui o valor atual do fragmento FrameCliente (AdicionarFragment) para o novo valor (ListarFragment)
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_cliente, new ListarFragment()).commit();
                         btnAdicionarClienteMain.setVisibility(View.VISIBLE);}
 
             }

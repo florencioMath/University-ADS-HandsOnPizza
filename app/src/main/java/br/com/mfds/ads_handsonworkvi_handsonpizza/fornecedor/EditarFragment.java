@@ -45,11 +45,14 @@ public class EditarFragment extends Fragment {
         etCnpj = v.findViewById(R.id.editText_cnpj_fornecedor);
         etTelefoneFornecedor = v.findViewById(R.id.editText_telefone_fornecedor);
 
+        // Recupera o valor do ID enviado por parâmetro ao clicar no ListarFragment
         Bundle b = getArguments();
         int id_fornecedor = b.getInt("id");
         databaseHelper = new DatabaseHelper(getActivity());
+        // Busca os dados do Cliente do valor do ID
         f = databaseHelper.getByIdFornecedor(id_fornecedor);
 
+        // Seta nos campos da interface os valores do banco de dados do ID do Cliente, recuperado via parâmetro
         etNomeFornecedor.setText(f.getNome());
         etEnderecoFornecedor.setText(f.getEndereco());
         etCnpj.setText(f.getCnpj());
@@ -75,6 +78,7 @@ public class EditarFragment extends Fragment {
 
         Button btnExcluir = v.findViewById(R.id.button_excluir_fornecedor);
         btnExcluir.setOnClickListener(new View.OnClickListener() {
+            // Cria um alerta para o usuário informar Sim ou Não para a exclusão
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -111,6 +115,7 @@ public class EditarFragment extends Fragment {
         }   else if(etTelefoneFornecedor.getText().toString().equals("")){
             Toast.makeText(getActivity(), "Por favor, Informe o telefone do Fornecedor",Toast.LENGTH_LONG).show();
         } else {
+            // Setar os valores para a classe Fornecedor
             f = new Fornecedor();
             f.setId(id);
             f.setNome(etNomeFornecedor.getText().toString());
@@ -119,6 +124,7 @@ public class EditarFragment extends Fragment {
             f.setTelefone(etTelefoneFornecedor.getText().toString());
             databaseHelper.updateFornecedor(f);
             Toast.makeText(getActivity(), "Fornecedor atualizado", Toast.LENGTH_LONG).show();
+            // Substitui o valor atual do fragmento FrameFornecedor (EditarFragment) para o novo valor (ListarFragment)
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_fornecedor, new ListarFragment()).commit();
         }
     }
@@ -129,6 +135,7 @@ public class EditarFragment extends Fragment {
         f.setId(id);
         databaseHelper.deleteFornecedor(f);
         Toast.makeText(getActivity(), "Fornecedor excluído", Toast.LENGTH_LONG).show();
+        // Substitui o valor atual do fragmento FrameFornecedor (EditarFragment) para o novo valor (ListarFragment)
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_fornecedor, new ListarFragment()).commit();
     }
 }

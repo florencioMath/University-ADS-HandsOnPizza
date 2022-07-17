@@ -29,11 +29,12 @@ public class AdicionarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Button btnAdicionarClienteMain = getParentFragmentManager().findFragmentById(R.id.frame_fornecedor).getActivity().findViewById(R.id.button_adicionar_fornecedor);
-        btnAdicionarClienteMain.setVisibility(View.GONE);
+        Button btnAdicionarFornecedorMain = getParentFragmentManager().findFragmentById(R.id.frame_fornecedor).getActivity().findViewById(R.id.button_adicionar_fornecedor);
+        btnAdicionarFornecedorMain.setVisibility(View.GONE);
 
         View v = inflater.inflate(R.layout.fornecedor_fragment_adicionar, container, false);
 
+        // localiza os elementos da interface pelo ID (definidos no arquivo XML)
         etNomeFornecedor = v.findViewById(R.id.editText_nome_fornecedor);
         etEnderecoFornecedor = v.findViewById(R.id.editText_endereco_fornecedor);
         etCnpj = v.findViewById(R.id.editText_cnpj_fornecedor);
@@ -55,6 +56,7 @@ public class AdicionarFragment extends Fragment {
                     Toast.makeText(getActivity(), "Por favor, Informe o telefone do Fornecedor", Toast.LENGTH_LONG).show();
                 }   else {
                     DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
+                    // Setar os valores para a classe Fornecedor
                     Fornecedor f = new Fornecedor();
                     f.setNome(etNomeFornecedor.getText().toString());
                     f.setEndereco(etEnderecoFornecedor.getText().toString());
@@ -62,8 +64,9 @@ public class AdicionarFragment extends Fragment {
                     f.setTelefone(etTelefoneFornecedor.getText().toString());
                     databaseHelper.createFornecedor(f);
                     Toast.makeText(getActivity(), "Fornecedor salvo", Toast.LENGTH_LONG).show();
+                    // Substitui o valor atual do fragmento FrameFornecedor (AdicionarFragment) para o novo valor (ListarFragment)
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_fornecedor, new ListarFragment()).commit();
-                    btnAdicionarClienteMain.setVisibility(View.VISIBLE);
+                    btnAdicionarFornecedorMain.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -73,7 +76,7 @@ public class AdicionarFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_fornecedor, new ListarFragment()).commit();
-                btnAdicionarClienteMain.setVisibility(View.VISIBLE);
+                btnAdicionarFornecedorMain.setVisibility(View.VISIBLE);
             }
         });
 

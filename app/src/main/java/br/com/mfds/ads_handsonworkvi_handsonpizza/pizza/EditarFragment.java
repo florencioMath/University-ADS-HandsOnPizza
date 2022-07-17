@@ -43,11 +43,14 @@ public class EditarFragment extends Fragment {
         etIngredientes = v.findViewById((R.id.editText_ingredientes_pizza));
         etTempoPreparo = v.findViewById(R.id.editText_tempo_pizza);
 
+        // Recupera o valor do ID enviado por parâmetro ao clicar no ListarFragment
         Bundle b = getArguments();
         int id_pizza = b.getInt("id");
         databaseHelper = new DatabaseHelper(getActivity());
+        // Busca os dados do Cliente do valor do ID
         p = databaseHelper.getByIdPizza(id_pizza);
 
+        // Seta nos campos da interface os valores do banco de dados do ID do Cliente, recuperado via parâmetro
         etNome.setText(p.getNome());
         etIngredientes.setText(p.getIngredientes());
         etTempoPreparo.setText(p.getTempo_preparo());
@@ -72,6 +75,7 @@ public class EditarFragment extends Fragment {
 
         Button btnExcluir = v.findViewById(R.id.button_excluir_pizza);
         btnExcluir.setOnClickListener(new View.OnClickListener() {
+            // Cria um alerta para o usuário informar Sim ou Não para a exclusão
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -106,6 +110,7 @@ public class EditarFragment extends Fragment {
         }  else if(etTempoPreparo.getText().toString().equals("")){
             Toast.makeText(getActivity(), "Por favor, Informe o tempo de preparo da Pizza",Toast.LENGTH_LONG).show();
         } else {
+            // Setar os valores para a classe Cliente
             p = new Pizza();
             p.setId(id);
             p.setNome(etNome.getText().toString());
@@ -113,6 +118,7 @@ public class EditarFragment extends Fragment {
             p.setTempo_preparo(etTempoPreparo.getText().toString());
             databaseHelper.updatePizza(p);
             Toast.makeText(getActivity(), "Pizza atualizada", Toast.LENGTH_LONG).show();
+            // Substitui o valor atual do fragmento FramePizza (EditarFragment) para o novo valor (ListarFragment)
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_pizza, new ListarFragment()).commit();
         }
     }
@@ -123,6 +129,7 @@ public class EditarFragment extends Fragment {
         p.setId(id);
         databaseHelper.deletePizza(p);
         Toast.makeText(getActivity(), "Pizza excluído", Toast.LENGTH_LONG).show();
+        // Substitui o valor atual do fragmento FramePizza (EditarFragment) para o novo valor (ListarFragment)
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_pizza, new ListarFragment()).commit();
     }
 

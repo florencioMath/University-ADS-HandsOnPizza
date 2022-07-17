@@ -37,6 +37,8 @@ public class EditarFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fornecedor_fragment_editar, container, false);
+        Button btnAdicionarClienteMain = getParentFragmentManager().findFragmentById(R.id.frame_fornecedor).getActivity().findViewById(R.id.button_adicionar_fornecedor);
+        btnAdicionarClienteMain.setVisibility(View.GONE);
 
         etNomeFornecedor = v.findViewById(R.id.editText_nome_fornecedor);
         etEnderecoFornecedor = v.findViewById(R.id.editText_endereco_fornecedor);
@@ -58,6 +60,7 @@ public class EditarFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_fornecedor, new ListarFragment()).commit();
+                btnAdicionarClienteMain.setVisibility(View.VISIBLE);
             }
         });
 
@@ -66,6 +69,7 @@ public class EditarFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 editar(id_fornecedor);
+                btnAdicionarClienteMain.setVisibility(View.VISIBLE);
             }
         });
 
@@ -79,6 +83,7 @@ public class EditarFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         excluir(id_fornecedor);
+                        btnAdicionarClienteMain.setVisibility(View.VISIBLE);
                     }
                 });
                 builder.setNegativeButton(R.string.nao, new DialogInterface.OnClickListener() {

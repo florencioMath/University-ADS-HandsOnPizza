@@ -45,6 +45,9 @@ public class EditarFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.cliente_fragment_editar, container, false);
+        Button btnAdicionarClienteMain = getParentFragmentManager().findFragmentById(R.id.frame_cliente).getActivity().findViewById(R.id.button_adicionar_cliente);
+        btnAdicionarClienteMain.setVisibility(View.GONE);
+
         Bundle b = getArguments();
         int id_cliente = b.getInt("id");
         databaseHelper = new DatabaseHelper(getActivity());
@@ -93,6 +96,7 @@ public class EditarFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_cliente, new ListarFragment()).commit();
+                btnAdicionarClienteMain.setVisibility(View.VISIBLE);
             }
         });
 
@@ -101,6 +105,7 @@ public class EditarFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 editar(id_cliente);
+                btnAdicionarClienteMain.setVisibility(View.VISIBLE);
             }
         });
 
@@ -114,6 +119,7 @@ public class EditarFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         excluir(id_cliente);
+                        btnAdicionarClienteMain.setVisibility(View.VISIBLE);
                     }
                 });
                 builder.setNegativeButton(R.string.nao, new DialogInterface.OnClickListener() {
